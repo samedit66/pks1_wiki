@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание статьи</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Создать статью</h1>
+
+    {% if error %}
+    <div class="error_message">
+        Статья с таким именем уже есть!
+    </div>
+    {% endif %}
+
+    <form
+            action="{{ url_for('create_article') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="create_article_form"
+        >
+        <div class="form_group">
+            <label for="title">Название статьи</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form_group">
+            <label for="content">Текст статьи</label>
+            <textarea id="content" name="content" required></textarea>
+        </div>
+
+        <div class="form_group">
+            <label for="photo">Фотография к статье</label>
+            <input type="file" id="photo" name="photo" accept=".jpeg, .jpg, .png"> 
+        </div>
+
+        <button type="submit">Создать статью</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рувики</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="article">
+        <div class="article_text">
+            <h1>{{ article.title }}</h1>
+
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
+
+        <div class="article_image">
+            {% if article.image %}
+                <img
+                    src="{{ url_for('uploaded_photo', filename=article.image) }}"
+                    alt="{{ article.title }}"
+                    style="height: 150px; width: auto; margin-bottom: 10px;">
+
+                <div><b>{{ article.title }}</b></div>
+            {% else %}
+                <div><b>Изображение отсутсвует</b></div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рувики</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <a
+            class="create_btn"
+            href="{{ url_for('create_article') }}"
+        >Создать статью</a>
+    </div>
+
+    <div class="article_list">
+        <h1>Доступные статьи</h1>
+    
+        <div class="article_table">
+            {% for article_group in groups %}
+            <div class="article_table_row">
+                {% for article in article_group %}
+                <a
+                    class="article_card"
+                    href="{{ url_for('get_article', title=article.title) }}">
+                    <h3>{{ article.title }}</h3>
+                </a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
