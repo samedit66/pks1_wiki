@@ -32,6 +32,19 @@ body {
     align-items: center;
 }
 
+.controls_edit_btn {
+    height: 30px;
+    width: auto;
+    background-color: rgb(5, 211, 2);
+    padding: 5px;
+    text-decoration: none;
+    border-color: rgb(5, 211, 2);;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .controls_del_btn_icon {
     height: 20px;
     width: auto;

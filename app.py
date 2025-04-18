@@ -4,7 +4,8 @@ from flask import (
     request,
     redirect,
     url_for,
-    send_from_directory)
+    send_from_directory,
+    abort)
 import os
 from article import Article
 from database import Database
@@ -66,9 +67,17 @@ def create_article():
     return redirect(url_for('index'))
 
 
-@app.route("/delete_article", methods=["DELETE"])
-def delete_article():
-    ...
+@app.route("/delete_article/<id>", methods=["POST"])
+def delete_article(id):
+    if not Database.delete(id):
+        abort(404, f"Article id {id} doesn't exist")
+    
+    return redirect(url_for('index'))
+
+
+@app.route("/update_article/<id>", methods=["GET", "POST"])
+def update_article(id):
+    return render_template("update_article.html")
 
 
 @app.route("/")
