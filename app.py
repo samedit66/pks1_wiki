@@ -17,6 +17,16 @@ Database.create_article_table()
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, 'static/img'),
+        'favicon.ico',
+        mimetype="image/vnd.microsoft.icon"
+    )
+
+
 @app.route("/article/<title>")
 def get_article(title):
     article = Database.find_article_by_title(title)
@@ -55,6 +65,12 @@ def create_article():
 
     return redirect(url_for('index'))
 
+
+@app.route("/delete_article", methods=["DELETE"])
+def delete_article():
+    ...
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -73,4 +89,4 @@ def uploaded_photo(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
-app.run(debug=True, port=8080)
+app.run(debug=True, port=8088)

@@ -4,6 +4,7 @@ from article import Article
 
 class Database:
     db_path = "database.db"
+    schema_path = "schema.sql"
 
     @staticmethod
     def execute(sql_code: str, params: tuple = ()):
@@ -16,14 +17,9 @@ class Database:
 
     @staticmethod
     def create_article_table():
-        Database.execute("""
-        CREATE TABLE IF NOT EXISTS articles (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            content TEXT NOT NULL,
-            filename TEXT
-        )
-        """)
+        with open(Database.schema_path) as schema_file:
+            sql_code = schema_file.read()
+            Database.execute(sql_code)
 
     @staticmethod
     def save(article: Article) -> bool:
