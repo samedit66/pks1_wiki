@@ -77,7 +77,31 @@ def delete_article(id):
 
 @app.route("/update_article/<id>", methods=["GET", "POST"])
 def update_article(id):
-    return render_template("update_article.html")
+    article = Database.find_article_by_id(id)
+    if article is None:
+        abort(404, f"Article id {id} doesn't exist")
+
+    if request.method == "GET":
+        return render_template("update_article.html", article=article)
+    
+    # Обработка POST-запроса
+    title = request.form.get("title")
+    content = request.form.get("content")
+    image = request.files.get("photo")
+    
+    if image is not None and image.filename:
+        image_path = image.filename
+        # Костыль: может вызвать проблемы с сохранением
+        # картинок в папку
+        image.save(app.config["UPLOAD_FOLDER"] + image_path)
+    else:
+        image_path = None
+
+    saved = Database.save(
+        Article(title, content, image_path)
+    )
+
+    return redirect(url_for('index'))
 
 
 @app.route("/")

@@ -13,10 +13,24 @@ body {
     width: 1000px;
     border-radius: 10px;
     display: flex;
-    justify-content: end;
+    justify-content: center;
     margin-bottom: 10px;
     background-color: whitesmoke;
     padding: 10px;
+}
+
+.left_controls {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.right_controls {
+    width: 50%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 .controls_del_btn {
@@ -186,4 +200,11 @@ body {
     text-decoration: none;
     font-size: 20px;
     border-radius: 5px;
+}
+
+.image_preview {
+    display: block;
+    height: 150px;
+    width: auto;
+    margin-bottom: 10px;
 }

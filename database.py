@@ -22,6 +22,24 @@ class Database:
             Database.execute(sql_code)
 
     @staticmethod
+    def update(article_id: int, title: str, content: str, image: str) -> bool:
+        # Если статьи с таким id нет, ничего не делаем и возвращаем False
+        if Database.find_article_by_id(article_id) is None:
+            return False
+        
+        Database.execute(
+            """
+            UPDATE articles
+            SET title = ?,
+            SET content = ?,
+            SET filename = ?
+            WHERE id = ?
+            """,
+            [title, content, image, article_id]
+        )
+        return True
+
+    @staticmethod
     def delete(article_id: int) -> bool:
         # Если статьи с таким id нет, ничего не делаем и возвращаем False
         if Database.find_article_by_id(article_id) is None:
@@ -37,7 +55,10 @@ class Database:
         if not articles: # if len(articles) == 0
             return None
 
-        return articles[0]
+        id, title, content, image = articles[0]
+        article = Article(id=id, title=title, content=content, image=image)
+
+        return article
 
     @staticmethod
     def save(article: Article) -> bool:

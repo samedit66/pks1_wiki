@@ -10,23 +10,33 @@
     <h1>Редактировать статью</h1>
 
     <form
-            action="{{ url_for('update_article') }}"
+            action=""
             method="POST"
             enctype="multipart/form-data"
             class="create_article_form"
         >
         <div class="form_group">
             <label for="title">Название статьи</label>
-            <input type="text" id="title" name="title" required>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                value="{{ article.title }}">
         </div>
         
         <div class="form_group">
             <label for="content">Текст статьи</label>
-            <textarea id="content" name="content" required></textarea>
+            <textarea id="content" name="content" required>{{ article.content }}</textarea>
         </div>
 
         <div class="form_group">
             <label for="photo">Фотография к статье</label>
+
+            {% if article.image %}
+                <img class="image_preview" src="{{ url_for('uploaded_photo', filename=article.image) }}">
+            {% endif %}
+
             <input type="file" id="photo" name="photo" accept=".jpeg, .jpg, .png"> 
         </div>
 
