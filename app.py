@@ -86,22 +86,28 @@ def update_article(id):
     
     # Обработка POST-запроса
     title = request.form.get("title")
+    if title is None:
+        title = article.title
+
     content = request.form.get("content")
+    if content is None:
+        content = article.content
+
     image = request.files.get("photo")
-    
     if image is not None and image.filename:
+        # Если мы задали новую картинку для статьи,
+        # ее надо сохранить в отдельную папку
         image_path = image.filename
-        # Костыль: может вызвать проблемы с сохранением
-        # картинок в папку
         image.save(app.config["UPLOAD_FOLDER"] + image_path)
+
+        filename = image_path
     else:
-        image_path = None
+        # Если мы не задавали картинку для статьи,
+        # то надо взять старую из объекта article
+        filename = article.image
 
-    saved = Database.save(
-        Article(title, content, image_path)
-    )
-
-    return redirect(url_for('index'))
+    Database.update(id, title, content, filename)
+    return redirect(url_for('get_article', title=title))
 
 
 @app.route("/")

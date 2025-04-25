@@ -31,8 +31,8 @@ class Database:
             """
             UPDATE articles
             SET title = ?,
-            SET content = ?,
-            SET filename = ?
+                content = ?,
+                filename = ?
             WHERE id = ?
             """,
             [title, content, image, article_id]
