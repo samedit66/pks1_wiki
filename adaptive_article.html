@@ -8,57 +8,126 @@
         body {
             display: flex;
             justify-content: center;
+            background-color: rgb(200, 194, 194);
+            padding: 0;
+            margin: 0;
         }
 
         .article {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .article_header {
             width: 75%;
+            display: flex;
+            justify-content: center;
+            background-color: whitesmoke;
+            border-radius: 16px;
+            margin-bottom: 8px;
+        }
+
+        .article_body {
+            width: 75%;
+            min-height: 500px;
             min-width: 300px;
-            background-color: aqua;
             display: flex;
             justify-content: center;
         }
 
-        .article_text {
+        .text_information {
+            padding: 0px 16px;
+            margin-right: 8px;
             width: 60%;
-            height: 500px;
-            background-color: blueviolet;
+            height: 100%;
+            background-color: whitesmoke;
+            border-radius: 16px;
+        }
+
+        .article_title {
+
+        }
+
+        .article_text {
+
         }
 
         .article_image {
+            padding: 16px;
             width: 40%;
             height: 500px;
-            background-color: chocolate;
+            background-color: whitesmoke;
+            border-radius: 16px;
         }
 
         .article_image img {
             width: 100%;
             height: auto;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        @media (max-width: 800px) {
-            .article {
+        @media (max-width: 768px) {
+            .article_body {
                 width: 100%;
                 flex-direction: column-reverse;
             }
 
-            .article_text {
+            .text_information {
                 width: 100%;
+                margin-right: 0;
             }
 
             .article_image {
                 width: 100%;
+                margin-bottom: 8px;
             }
         }
     </style>
 </head>
 <body>
     <div class="article">
-        <div class="article_text">
-            Шанхайский автосалон 2025 — 21-я международная выставка автомобильной промышленности (англ. Auto Shanghai 2025), которая прошла в Национальном выставочном и конференц-центре в Шанхае (англ.Shanghai National Exhibition & Convention Center)[1]. Площадь экспозиции составила 360 тысяч кв. метров. Заявлены 93 мировые премьеры. Впервые в истории салона состоялся закрытый саммит лидеров мирового автопрома[2].
+
+        <div class="article_header">
+
+            <div class="controls">
+
+                <div class="left_controls">
+                    <a class="controls_home_btn" href="">
+                        Главная
+                    </a>
+                </div>
+    
+                <div class="right_controls">
+                    <button class="conrtols_edit_btn">Править</button>
+                    <button class="controls_delete_btn">Удалить</button>
+                </div>
+    
+            </div>
+
         </div>
-        <div class="article_image">
-            <img src="./Карточка_шанхайского_автосалона.jpg" alt="">
+
+        <div class="article_body">
+
+            <div class="text_information">
+
+                <div class="article_title">
+                    <h1>Федон (Платон)</h1>
+                </div>
+                
+                <div class="article_text">
+                    «Федон» (др.-греч. Φαίδων) или «О Душе» (др.-греч. Περὶ ψυχῆς) — сократический диалог Платона 360-х годов до н. э. Назван по имени одного из учеников Сократа и основателя элидо-эретрийской философской школы Федона. Сочинение представляет собой рассказ Федона членам флиунтского пифагорейского общества о последнем дне жизни Сократа. Сам Платон отсутствовал при описываемых им событиях. По современным оценкам в диалоге представлены философские мысли Платона, а не Сократа, от имени которого ведётся их изложение.
+                </div>
+    
+            </div>
+            
+            <div class="article_image">
+                <img src="./Phaidon_beginning._Editio_princeps.jpg" alt="">
+            </div>
+
         </div>
+
     </div>
 </body>
 </html>
