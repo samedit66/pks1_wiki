@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Редактирование статьи</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <h1>Редактировать статью</h1>
+    <div class="main">
+        <h1>Редактировать статью</h1>
 
-    <form
-            action=""
-            method="POST"
-            enctype="multipart/form-data"
-            class="create_article_form"
-        >
-        <div class="form_group">
-            <label for="title">Название статьи</label>
-            <input
-                type="text"
-                id="title"
-                name="title"
-                required
-                value="{{ article.title }}">
-        </div>
-        
-        <div class="form_group">
-            <label for="content">Текст статьи</label>
-            <textarea id="content" name="content" required>{{ article.content }}</textarea>
-        </div>
+        <form action="" method="POST" enctype="multipart/form-data" class="create_article_form">
+            <div class="form_group">
+                <label for="title">Название статьи</label>
+                <input type="text" id="title" name="title" required value="{{ article.title }}">
+            </div>
 
-        <div class="form_group">
-            <label for="photo">Фотография к статье</label>
+            <div class="form_group">
+                <label for="content">Текст статьи</label>
+                <textarea id="content" name="content" required>{{ article.content }}</textarea>
+            </div>
 
-            {% if article.image %}
+            <div class="form_group">
+                <label for="photo">Фотография к статье</label>
+
+                {% if article.image %}
                 <img class="image_preview" src="{{ url_for('uploaded_photo', filename=article.image) }}">
-            {% endif %}
+                {% endif %}
 
-            <input type="file" id="photo" name="photo" accept=".jpeg, .jpg, .png"> 
-        </div>
+                <input type="file" id="photo" name="photo" accept=".jpeg, .jpg, .png">
+            </div>
 
-        <button type="submit">Сохранить</button>
-    </form>
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
 </body>
+
 </html>

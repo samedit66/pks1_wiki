@@ -1,0 +1,138 @@
+.article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.article_header {
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(200, 194, 194);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    padding: 8px 0;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+}
+
+.left_controls {
+    width: 50%;
+    display: flex;
+    justify-content: start;
+}
+
+.mobile_left_controls {
+    display: none;
+}
+
+.right_controls {
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5e2ec8;
+    color: white;
+    transition: color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.btn:not(:hover) {
+    background-color: white;
+    color: black;
+    transition: color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.conrtols_edit_btn {
+    margin-right: 8px;
+}
+
+.article_body {
+    width: 75%;
+    min-height: 500px;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.text_information {
+    padding: 0px 16px;
+    margin-right: 8px;
+    width: 60%;
+    height: 100%;
+    background-color: whitesmoke;
+    border-radius: 16px;
+}
+
+.article_title {
+
+}
+
+.article_text {
+
+}
+
+.article_image {
+    padding: 16px;
+    width: 40%;
+    height: 500px;
+    background-color: whitesmoke;
+    border-radius: 16px;
+}
+
+.article_image img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .article_header {
+        width: 100%;
+    }
+
+    .controls_home_btn {
+        margin-right: 8px;
+    }
+
+    .mobile_left_controls {
+        display: flex;
+    }
+
+    .right_controls {
+        display: none;
+    }
+
+    .article_body {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .text_information {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .article_image {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
