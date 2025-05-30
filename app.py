@@ -15,7 +15,7 @@ from database import Database
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'guzinibambini'
-Database.create_article_table()
+Database.create_tables()
 
 # Создаем по умолчанию папку 'uploads/' для загрузки картинок
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -54,7 +54,28 @@ def register():
         flash("Пароли не совпадают!")
         return redirect(request.url)
 
+    saved = Database.register_user(user_name, email, password)
+    if not saved:
+        flash("Пользователь с таким никнеймом или электронной почтой уже есть!")
+        return redirect(request.url)
+    
     return redirect(url_for('index'))
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    # POST-запрос
+    user_name = request.form.get("user_name")
+    password = request.form.get("password")
+
+    if not Database.can_be_logged_in(user_name, password):
+        flash("Такого пользователя не существует или неверный пароль!")
+        return redirect(request.url)
+    
+    return redirect(url_for("index"))
 
 
 @app.route("/favicon.ico")
@@ -158,7 +179,11 @@ def index():
     for i in range(0, len(articles), count_in_group): # 0, 4, 8, 12, ...
         groups.append(articles[i:i+count_in_group]) # [0:4], [4:8], [8:12], ...
 
-    return render_template("index.html", groups=groups)
+    return render_template(
+        "index.html",
+        groups=groups,
+        user_count=Database.get_count_of_users()
+    )
 
 
 @app.route('/uploads/<filename>')

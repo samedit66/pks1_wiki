@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="main">
+        <h1>Войти</h1>
+
+        {% for message in get_flashed_messages() %}
+        <div class="error_message">{{ message }}</div>
+        {% endfor %}
+
+        <form action="" method="POST" class="create_article_form">
+            <div class="form_group">
+                <label for="user_name">Логин</label>
+                <input type="text" id="user_name" name="user_name" required>
+            </div>
+
+            <div class="form_group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+</body>
+
+</html>

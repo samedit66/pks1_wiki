@@ -10,10 +10,17 @@
 <body>
     <div class="main">
         <div class="header">
+            <div class="header_user_count">
+                Зарегистрировано: {{ user_count }}
+            </div>
             <a
-                class="create_btn"
+                class="header_btn"
                 href="{{ url_for('create_article') }}"
             >Создать статью</a>
+            <a
+                class="header_btn"
+                href="{{ url_for('register') }}"
+            >Зарегистрироваться</a>
         </div>
     
         <div class="article_list">
